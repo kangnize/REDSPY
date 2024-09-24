@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - RedSpy</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .payment-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        .modal-header {
+            background-color: #343a40;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar (Header) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">RedSpy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a> <!-- Home Button with Icon -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/account"><i class="fas fa-user"></i> Profile</a> <!-- Profile Button with Icon -->
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container payment-section">
+        <h3>Payment Instructions</h3>
+        <p>To activate your account, please follow the instructions below:</p>
+        <ul>
+            <li><strong>Amount:</strong> 300 USDT</li>
+            <li><strong>Currency:</strong> Tether</li>
+            <li><strong>Wallet:</strong> [Your Wallet Address Here]</li>
+            <li><strong>Network:</strong> ERC 20</li>
+        </ul>
+        <p><strong>Please Remember:</strong></p>
+        <ol>
+            <li>Only pay through the ERC20 network. Paying through a different network will result in losses.</li>
+            <li>Copy the Transaction ID or HASH and paste it for confirmation below.</li>
+            <li>Transaction confirmation is done within hours, and your account will be activated immediately.</li>
+            <li>You agree to use RedSpy only for legitimate reasons.</li>
+        </ol>
+
+        <!-- I have Paid Button -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
+            I have paid
+        </button>
+    </div>
+
+    <!-- Modal Pop-Up Form -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Payment Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/confirm_payment">
+                        <div class="form-group">
+                            <label for="transaction_id">Transaction Hash/ID</label>
+                            <input type="text" class="form-control" id="transaction_id" name="transaction_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_email">User Email</label>
+                            <input type="email" class="form-control" id="user_email" name="user_email" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit Payment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

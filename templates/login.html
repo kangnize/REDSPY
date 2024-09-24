@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - RedSpy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 100px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .home-button {
+            margin-top: 10px;
+            float: right;
+        }
+        /* Center the additional links */
+        .additional-links {
+            text-align: center; /* Center text */
+            margin-top: 15px; /* Optional spacing */
+        }
+        /* Change the login button to green */
+        .btn-login {
+            background-color: green; /* Green background */
+            color: white; /* White text color */
+        }
+        .btn-login:hover {
+            background-color: darkgreen; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="header d-flex justify-content-between align-items-center">
+        <h1 class="m-0">RedSpy</h1>
+        <a href="/" class="btn btn-light home-button">Home</a>
+    </div>
+    <div class="login-container">
+        <h2 class="text-center">Login to RedSpy</h2>
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-login btn-block">Login</button> <!-- Updated button class -->
+        </form>
+        <div class="additional-links">
+            <p><a href="/forgot-password">Forgot Password?</a></p>
+            <p>If you don't have an account? <a href="/register">Register</a></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

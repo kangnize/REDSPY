@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account - RedSpy</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-header h2 {
+            margin: 0;
+        }
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            color: #333;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #d1d7dd;
+        }
+        .sidebar a i {
+            margin-right: 10px;
+        }
+        .content-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar {
+            margin-bottom: 30px;
+        }
+        .btn-green {
+            background-color: green; /* Green background */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+        }
+        
+        .btn-green:hover {
+            background-color: darkgreen; /* Darker green on hover */
+        }
+
+        .alert {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar (Header) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">RedSpy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/account"><i class="fas fa-user"></i> Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h5>Menu</h5>
+                    <a href="#" id="generateRedSpy"><i class="fas fa-file-alt"></i> Generate RedSpy</a>
+                    <a href="#" id="connectedDevices"><i class="fas fa-plug"></i> Connected Devices</a>
+                    <a href="#" id="disconnectDevice"><i class="fas fa-times-circle"></i> Disconnect A Device</a>
+                    <a href="/payment" id="activateAccount"><i class="fas fa-key"></i> Activate Account</a>
+                    <a href="/account"><i class="fas fa-cog"></i> Profile Settings</a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div>
+                        <h2>{{ username }}</h2> <!-- Display the logged-in user's username -->
+                    </div>
+                </div>
+
+                <!-- Dashboard Summary -->
+                <div class="content-section">
+                    <h4>Dashboard Summary</h4>
+                    <p>Welcome to your dashboard! Here you can manage your account settings and devices.</p>
+                </div>
+
+                <!-- Profile Section -->
+                <div class="content-section">
+                    <h4>Account Information</h4>
+                    <form method="POST" action="/update_account">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="{{ username }}" required> <!-- Editable Username -->
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ email }}" required> <!-- Editable Email -->
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="/payment" class="btn btn-green">Proceed To Payment</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Font Awesome JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        document.getElementById("generateRedSpy").addEventListener("click", function() {
+            alert("Activate Your Account To Access");
+        });
+
+        document.getElementById("connectedDevices").addEventListener("click", function() {
+            alert("Activate Your Account To Access");
+        });
+
+        document.getElementById("disconnectDevice").addEventListener("click", function() {
+            alert("Activate Your Account To Access");
+        });
+
+        document.getElementById("activateAccount").addEventListener("click", function() {
+            window.location.href = '/activate'; // Redirect to activation page
+        });
+    </script>
+</body>
+</html>

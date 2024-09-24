@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Dashboard with Graphs</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: #343a40;
+            padding-top: 20px;
+            color: #fff;
+        }
+
+        .sidebar h5 {
+            color: #ccc;
+        }
+
+        .main-content {
+            margin-left: 270px;
+        }
+
+        .device-info {
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-weight: bold;
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        canvas {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="text-center">
+            <h4>Select Language ▼</h4>
+            <h5>DEVICE</h5>
+            <h5>Nina's Samsung</h5>
+            <button class="btn btn-outline-light btn-sm">Add Device</button>
+        </div>
+        <hr>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#" id="dashboardBtn" data-bs-toggle="collapse"
+                    data-bs-target="#generalFeatures" aria-expanded="false" aria-controls="generalFeatures"><i
+                        class="fas fa-tachometer-alt"></i> Dashboard</a>
+            </li>
+            <div class="collapse" id="generalFeatures">
+                <h6 class="text-muted mt-2">GENERAL FEATURES</h6>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-comment-dots"></i> Text
+                        Messages</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-map-marker-alt"></i> GPS
+                        Locations</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-keyboard"></i>
+                        Keylogger</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-phone-alt"></i> Calls</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-address-book"></i>
+                        Contacts</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-calendar-alt"></i>
+                        Events</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-sticky-note"></i>
+                        Notes</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-camera"></i> Photos</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-video"></i> Videos</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-wifi"></i> Wi-Fi
+                        Networks</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-key"></i> Keyword
+                        Alerts</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-cogs"></i> Installed
+                        Apps</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-bookmark"></i>
+                        Bookmarks</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-history"></i> Browser
+                        History</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-envelope"></i> Email</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-sim-card"></i> SIM
+                        Card</a></li>
+            </div>
+            <h6 class="text-muted mt-4">SOCIAL NETWORKS</h6>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="socialNetworksDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-share-alt"></i> Social Networks</a>
+                <ul class="dropdown-menu" aria-labelledby="socialNetworksDropdown">
+                    <li><a class="dropdown-item" href="/chats" onclick="redirectTo('whatsup.html')">WhatsApp</a></li>
+                    <li><a class="dropdown-item" href="/chats" onclick="redirectTo('kik.html')">Kik</a></li>
+                    <li><a class="dropdown-item" href="/chats" onclick="redirectTo('line.html')">LINE</a></li>
+                    <li><a class="dropdown-item" href="/chats" onclick="redirectTo('telegram.html')">Telegram</a></li>
+
+                </ul>
+            </li>
+            <h6 class="text-muted mt-4">SCREEN RECORDINGS</h6>
+            <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-video"></i> Screen
+                    Recordings</a></li>
+            <h6 class="text-muted mt-4">CONTROLS</h6>
+            <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-map-marker-alt"></i>
+                    Geo-Fencing</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-lock"></i> Website Block</a>
+            </li>
+            <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-wifi"></i> Wi-Fi Block</a>
+            </li>
+            <li class="nav-item"><a class="nav-link text-white" href="#"><i class="fas fa-ban"></i> App Block</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h1 class="text-center">Target Device Activity</h1>
+
+        <!-- Charts for Messaging, Calling, and WhatsApp -->
+        <div class="container">
+            <canvas id="messagesChart"></canvas>
+            <canvas id="callsChart"></canvas>
+            <canvas id="whatsappChart"></canvas>
+        </div>
+
+        <!-- About Target Device -->
+        <div class="card mb-4 bg-light">
+            <div class="card-header bg-primary text-white">About Target Device</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">Device Name: Nina's Samsung</h5>
+                        <p class="card-text">OS: Android 11</p>
+                        <p class="card-text">Manufacturer: Samsung</p>
+                        <p class="card-text">Model: Galaxy S21</p>
+                        <p class="card-text">IMEI: 123456789012345</p>
+                        <p class="card-text">Last Online: 2 hours ago</p>
+                    </div>
+                    <div class="col">
+                        <h5 class="card-title">Battery Status</h5>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 70%;"
+                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">Activity Log</div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Message Sent: 12:30 PM <span class="badge bg-secondary">Read</span></li>
+                    <li class="list-group-item">Call Made: 11:45 AM <span class="badge bg-success">Completed</span></li>
+                    <li class="list-group-item">WhatsApp Message: 10:00 AM <span
+                            class="badge bg-secondary">Delivered</span></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Example data for charts
+        const messagesData = [5, 10, 15, 20, 10, 5];
+        const callsData = [2, 5, 3, 8, 2, 4];
+        const whatsappData = [3, 6, 7, 4, 5, 8];
+
+        const ctxMessages = document.getElementById('messagesChart').getContext('2d');
+        const ctxCalls = document.getElementById('callsChart').getContext('2d');
+        const ctxWhatsApp = document.getElementById('whatsappChart').getContext('2d');
+
+        const messagesChart = new Chart(ctxMessages, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                datasets: [{
+                    label: 'Messages',
+                    data: messagesData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const callsChart = new Chart(ctxCalls, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                datasets: [{
+                    label: 'Calls',
+                    data: callsData,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const whatsappChart = new Chart(ctxWhatsApp, {
+            type: 'pie',
+            data: {
+                labels: ['Sent', 'Received', 'Read'],
+                datasets: [{
+                    data: whatsappData,
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

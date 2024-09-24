@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - RedSpy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .register-container {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 100px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .home-button {
+            margin-top: 10px;
+            float: right;
+        }
+        /* Change the register button to green */
+        .btn-register {
+            background-color: green; /* Green background */
+            color: white; /* White text color */
+        }
+        .btn-register:hover {
+            background-color: darkgreen; /* Darker green on hover */
+        }
+        /* Center the already have an account link */
+        .login-link {
+            text-align: center;
+            margin-top: 15px; /* Optional spacing */
+        }
+    </style>
+</head>
+<body>
+    <div class="header d-flex justify-content-between align-items-center">
+        <h1 class="m-0">RedSpy</h1>
+        <a href="/" class="btn btn-light home-button">Home</a>
+    </div>
+    <div class="register-container">
+        <h2 class="text-center">Register for RedSpy</h2>
+        <form method="POST" action="/register">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit" class="btn btn-register btn-block">Register</button> <!-- Updated button class -->
+        </form>
+        <p class="login-link">
+            <a href="/login">Already have an account? Login</a>
+        </p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
+</body>
+</html>
